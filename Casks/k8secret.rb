@@ -1,6 +1,6 @@
 cask "k8secret" do
-  version "0.6.2"
-  sha256 "ac0bf562a8f35cbdf3529a10f87e991a1af3c480ef80f750bf5a94153bcbbfd6"
+  version "0.6.3"
+  sha256 "912e42f46db471c9aa2ef9620d13220bb1e74271fbbb31089f1a28e9afe817f7"
 
   url "https://github.com/jai-bhardwaj/k8secret/releases/download/v#{version}/K8Secret-#{version}.dmg"
   name "K8Secret"
