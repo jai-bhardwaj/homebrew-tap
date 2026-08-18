@@ -13,7 +13,9 @@ cask "k8secret" do
   end
 
   auto_updates true
-  depends_on macos: ">= :sonoma"
+  # A bare symbol already means "this version or newer"; the string comparison
+  # form is deprecated and warns on every brew command that touches this tap.
+  depends_on macos: :sonoma
 
   app "K8Secret.app"
 
