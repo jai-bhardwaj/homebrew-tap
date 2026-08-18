@@ -23,9 +23,16 @@ cask "k8secret" do
   # Homebrew has already verified the DMG against the sha256 above, which is
   # published in the repo's release manifest alongside the code that built it.
   # Without this, Gatekeeper would refuse the first launch outright.
+  #
+  # must_succeed: false because this must never be able to fail an install.
+  # `xattr -dr` exits non-zero when the path isn't there — a different --appdir,
+  # an app the user moved — and a failed postflight aborts the whole install for
+  # something entirely recoverable. Worst case without it is one Gatekeeper
+  # prompt on first launch; worst case with it is no app at all.
   postflight do
     system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/K8Secret.app"]
+                   args:         ["-dr", "com.apple.quarantine", "#{appdir}/K8Secret.app"],
+                   must_succeed: false
   end
 
   zap trash: [
